@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data/uploads:/app/data/uploads
+      - ./data/vectorstore:/app/data/vectorstore
+    env_file:
+      - .env
+    environment:
+      - VECTOR_DB_PATH=/app/data/vectorstore
+      - UPLOAD_FOLDER=/app/data/uploads

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI PDF Chatbot</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>AI PDF Chatbot</h1>
+            <p>Upload a PDF and ask questions about it</p>
+        </header>
+
+        <main class="main-content">
+            <section class="upload-section card">
+                <h2>Document Upload</h2>
+                <div class="upload-area" id="drop-area">
+                    <input type="file" id="pdf-upload" accept="application/pdf" hidden>
+                    <label for="pdf-upload" class="upload-btn">Select PDF</label>
+                    <span id="file-name">No file chosen</span>
+                </div>
+                <button id="upload-submit" class="primary-btn" disabled>Upload & Process</button>
+                <div id="upload-status" class="status-msg hidden"></div>
+            </section>
+
+            <section class="chat-section card">
+                <div class="chat-header">
+                    <h2>Chat</h2>
+                </div>
+                <div class="chat-window" id="chat-window">
+                    <div class="message ai">
+                        <div class="msg-content">Hello! Upload a PDF first, then you can ask me questions about it.</div>
+                    </div>
+                </div>
+                <div class="chat-input-area">
+                    <input type="text" id="question-input" placeholder="Type your question here..." disabled>
+                    <button id="send-btn" class="primary-btn" disabled>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                          <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>
+                        </svg>
+                    </button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
