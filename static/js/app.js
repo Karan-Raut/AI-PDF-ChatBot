@@ -135,12 +135,23 @@ document.addEventListener('DOMContentLoaded', () => {
         const contentDiv = document.createElement('div');
         contentDiv.className = 'msg-content';
         
-        // Basic escaping
-        const escapedText = document.createTextNode(text);
-        
-        // If it's an AI message, we could parse markdown here, but let's stick to text formatting
-        contentDiv.style.whiteSpace = 'pre-wrap';
-        contentDiv.appendChild(escapedText);
+        if (sender === 'ai') {
+            // Render markdown for AI messages
+            contentDiv.innerHTML = marked.parse(text);
+            
+            // Fix margins inside the markdown container so it fits the chat bubble
+            const elements = contentDiv.querySelectorAll('p, h1, h2, h3, h4, h5, h6, ul, ol');
+            elements.forEach(el => {
+                el.style.marginTop = '0';
+                el.style.marginBottom = '0.5rem';
+            });
+            const lastChild = contentDiv.lastElementChild;
+            if (lastChild) lastChild.style.marginBottom = '0';
+        } else {
+            // Basic escaping for user messages
+            contentDiv.style.whiteSpace = 'pre-wrap';
+            contentDiv.textContent = text;
+        }
         
         msgDiv.appendChild(contentDiv);
         chatWindow.appendChild(msgDiv);
